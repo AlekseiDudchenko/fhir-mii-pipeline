@@ -22,6 +22,9 @@ import java.util.UUID;
 @Component
 public class PatientProvider implements IResourceProvider {
 
+    private static final String MII_PATIENT_PROFILE =
+            "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient";
+
     private final FhirContext fhirContext;
     private final FhirResourceRepository repository;
     private final FhirProfileValidator profileValidator;
@@ -40,6 +43,10 @@ public class PatientProvider implements IResourceProvider {
 
     @Create
     public MethodOutcome create(@ResourceParam Patient patient) {
+        if (!patient.getMeta().hasProfile(MII_PATIENT_PROFILE)) {
+            patient.getMeta().addProfile(MII_PATIENT_PROFILE);
+        }
+
         ValidationResult validationResult = profileValidator.validate(patient);
         if (!validationResult.isSuccessful()) {
             OperationOutcome outcome = (OperationOutcome) validationResult.toOperationOutcome();
