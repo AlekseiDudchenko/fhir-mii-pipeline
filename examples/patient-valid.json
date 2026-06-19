@@ -1,0 +1,36 @@
+{
+  "resourceType": "Patient",
+  "meta": {
+    "profile": [
+      "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient"
+    ]
+  },
+  "identifier": [
+    {
+      "type": {
+        "coding": [
+          {
+            "system": "http://fhir.de/CodeSystem/identifier-type-de-basis",
+            "code": "GKV"
+          }
+        ]
+      },
+      "system": "http://fhir.de/sid/gkv/kvid-10",
+      "value": "A123456789",
+      "assigner": {
+        "identifier": {
+          "system": "http://fhir.de/sid/arge-ik/iknr",
+          "value": "109500969"
+        }
+      }
+    }
+  ],
+  "name": [
+    {
+      "family": "Mustermann",
+      "given": ["Erika"]
+    }
+  ],
+  "gender": "female",
+  "birthDate": "1964-08-12"
+}
