@@ -72,7 +72,11 @@ class PatientProviderIntegrationTest {
 
         OperationOutcome outcome = fhirContext.newJsonParser()
                 .parseResource(OperationOutcome.class, response.getBody());
-        assertFalse(outcome.getIssue().isEmpty());
+        boolean hasIdentifierError = outcome.getIssue().stream()
+                .anyMatch(i -> i.getSeverity() == OperationOutcome.IssueSeverity.ERROR
+                        && i.getDiagnostics() != null
+                        && i.getDiagnostics().toLowerCase().contains("identifier"));
+        assertTrue(hasIdentifierError, "Should report missing identifier validation error");
     }
 
     @Test
@@ -102,6 +106,7 @@ class PatientProviderIntegrationTest {
     private ResponseEntity<String> postPatient(String body) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("application/fhir+json"));
+        headers.set(HttpHeaders.ACCEPT, "application/fhir+json");
         return restTemplate.exchange(
                 "http://localhost:" + port + "/fhir/Patient",
                 HttpMethod.POST, new HttpEntity<>(body, headers), String.class);
