@@ -39,6 +39,10 @@ com.alekseidudchenko.fhirmiipipeline
   └── model/         DTOs (reserved)
 ```
 
+## Code review
+
+- During code review, check whether new or changed code makes any section of this file outdated (architecture, package structure, tech stack, conventions). If it does, the PR must include an update to CLAUDE.md.
+
 ## Conventions
 
 - No authentication/authorization — out of scope
