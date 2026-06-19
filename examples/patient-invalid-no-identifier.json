@@ -1,0 +1,16 @@
+{
+  "resourceType": "Patient",
+  "meta": {
+    "profile": [
+      "https://www.medizininformatik-initiative.de/fhir/core/modul-person/StructureDefinition/Patient"
+    ]
+  },
+  "name": [
+    {
+      "family": "Fehler",
+      "given": ["Max"]
+    }
+  ],
+  "gender": "male",
+  "birthDate": "1990-01-15"
+}
