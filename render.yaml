@@ -1,0 +1,38 @@
+databases:
+  - name: fhir-mii-db
+    databaseName: fhir_mii
+    user: fhir
+    plan: free
+
+services:
+  - type: web
+    name: fhir-mii-pipeline
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /fhir/metadata
+    envVars:
+      - key: SERVER_PORT
+        value: ${PORT}
+      - key: DB_HOST
+        fromDatabase:
+          name: fhir-mii-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: fhir-mii-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: fhir-mii-db
+          property: database
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: fhir-mii-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: fhir-mii-db
+          property: password
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
