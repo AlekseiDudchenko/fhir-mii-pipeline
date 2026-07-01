@@ -10,7 +10,7 @@ services:
     runtime: docker
     dockerfilePath: ./Dockerfile
     plan: free
-    healthCheckPath: /fhir/metadata
+    healthCheckPath: /actuator/health
     envVars:
       - key: PGHOST
         fromDatabase:
