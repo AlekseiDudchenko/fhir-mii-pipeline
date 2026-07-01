@@ -12,8 +12,6 @@ services:
     plan: free
     healthCheckPath: /fhir/metadata
     envVars:
-      - key: SERVER_PORT
-        value: ${PORT}
       - key: DB_HOST
         fromDatabase:
           name: fhir-mii-db
@@ -34,5 +32,3 @@ services:
         fromDatabase:
           name: fhir-mii-db
           property: password
-      - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}

@@ -41,7 +41,7 @@ The repo includes a [`render.yaml`](render.yaml) Blueprint for one-click deploym
 2. On Render, choose **New > Blueprint** and point it at the repo.
 3. Render provisions a free web service (built from the existing `Dockerfile`) and a free PostgreSQL database, wiring `SPRING_DATASOURCE_*` env vars automatically.
 
-Note: on Render's free plan the web service spins down after periods of inactivity (cold start on the next request), and the free PostgreSQL database is deleted after 90 days unless upgraded.
+Note: on Render's free plan the web service spins down after periods of inactivity (cold start on the next request), and the free PostgreSQL database expires 30 days after creation (14-day grace period to upgrade before it and its data are deleted).
 
 ## API Examples
 
