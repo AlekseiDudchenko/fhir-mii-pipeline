@@ -11,6 +11,7 @@ FHIR R4 REST API with MII Kerndatensatz profile validation. Spring Boot 3.4 + HA
 - PostgreSQL 16 (jsonb storage for raw FHIR resources)
 - H2 in-memory for tests (PostgreSQL compatibility mode)
 - JUnit 5, Docker + docker-compose
+- Spring Boot Actuator (`/actuator/health` only) — used as the Render health check path; HAPI's `/fhir/metadata` rejects non-GET requests (e.g. HEAD probes), so it can't serve as a platform health check
 
 ## Build & test
 
