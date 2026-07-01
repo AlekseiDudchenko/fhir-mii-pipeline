@@ -33,6 +33,16 @@ docker-compose up --build
 
 The API will be available at `http://localhost:8080/fhir`.
 
+## Deployment
+
+The repo includes a [`render.yaml`](render.yaml) Blueprint for one-click deployment on [Render](https://render.com):
+
+1. Fork/push this repo to your GitHub account.
+2. On Render, choose **New > Blueprint** and point it at the repo.
+3. Render provisions a free web service (built from the existing `Dockerfile`) and a free PostgreSQL database, wiring `SPRING_DATASOURCE_*` env vars automatically.
+
+Note: on Render's free plan the web service spins down after periods of inactivity (cold start on the next request), and the free PostgreSQL database is deleted after 90 days unless upgraded.
+
 ## API Examples
 
 ### Create a valid Patient (MII profile)
